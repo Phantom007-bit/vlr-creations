@@ -231,16 +231,21 @@
         .btn-white { background: white; color: var(--primary); }
         .btn-white:hover { background: var(--background); }
         
+        /* New Clear Cart Button Style */
+        .btn-danger-outline { background: transparent; color: var(--danger); border: 2px solid var(--danger); margin-bottom: 15px; }
+        .btn-danger-outline:hover { background: var(--danger); color: white; }
+        
         @media (min-width: 768px) {
             .btn { padding: 20px; font-size: 16px; }
             .btn-primary:hover { box-shadow: 0 10px 25px rgba(11, 0, 147, 0.3); transform: translateY(-2px); }
             .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+            .btn-danger-outline:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2); }
         }
 
         /* --- CART DRAWER --- */
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(5px); z-index: 2000; opacity: 0; pointer-events: none; transition: var(--transition); }
         .cart-overlay.active { opacity: 1; pointer-events: all; }
-        .cart-drawer { position: fixed; top: 0; right: -100vw; width: 100%; max-width: 450px; height: 100vh; background: var(--surface); z-index: 2001; transition: transform 0.4s ease; display: flex; flex-direction: column; border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(11, 0, 147, 0.1); }
+        .cart-drawer { position: fixed; top: 0; bottom: 0; right: -100vw; width: 100%; max-width: 450px; background: var(--surface); z-index: 2001; transition: transform 0.4s ease; display: flex; flex-direction: column; border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(11, 0, 147, 0.1); }
         .cart-drawer.active { transform: translateX(-100vw); }
         
         .drawer-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--background); }
@@ -250,7 +255,7 @@
         .cart-items-container { padding: 20px; overflow-y: auto; flex-grow: 1; }
         .cart-item { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
         .cart-item-img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); }
-        .drawer-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--background); }
+        .drawer-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--background); display: none; } /* Hidden by default when empty */
         
         .floating-cart { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white; border: none; border-radius: 50px; padding: 14px 20px; font-size: 14px; font-weight: 700; box-shadow: 0 10px 25px rgba(11, 0, 147, 0.4); cursor: pointer; z-index: 1000; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
         #cart-counter-badge { background: var(--danger); color: white; font-size: 12px; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-weight: 800; }
@@ -276,7 +281,7 @@
 
     <header>
         <div class="logo" onclick="switchTab('home')">
-            <img src="VLR LOGO PNG.jpg" alt="VLR Global Concept Logo">
+            <img src="VLR LOGO PNG.jpg" alt="VLR Logo" style="height: 30px;">
         </div>
         <nav class="nav-tabs">
             <button class="tab-btn active" onclick="switchTab('home')">Home</button>
@@ -553,7 +558,8 @@
             <button id="close-drawer-btn" class="close-btn">&times;</button>
         </div>
         <div id="cart-items-list" class="cart-items-container"></div>
-        <div class="drawer-footer">
+        <div class="drawer-footer" id="drawer-footer">
+            <button id="clear-cart-btn" class="btn btn-danger-outline">Clear Request</button>
             <button id="checkout-whatsapp-btn" class="btn btn-primary">Send to WhatsApp Studio</button>
         </div>
     </div>
@@ -693,13 +699,26 @@
             openDrawer();
         });
 
+        // --- CLEAR CART LOGIC ---
+        document.getElementById('clear-cart-btn').addEventListener('click', function() {
+            cart = [];
+            document.getElementById('cart-counter-badge').innerText = '0';
+            openDrawer(); 
+        });
+
         // --- DRAWER & CHECKOUT LOGIC ---
-        const drawer = document.getElementById('cart-drawer'), overlay = document.getElementById('cart-overlay'), cartList = document.getElementById('cart-items-list');
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        const cartList = document.getElementById('cart-items-list');
+        const drawerFooter = document.getElementById('drawer-footer');
+
         function openDrawer() {
             cartList.innerHTML = ''; 
             if (cart.length === 0) {
                 cartList.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top: 50px; font-size: 14px;">Your request is empty.</p>';
+                drawerFooter.style.display = 'none'; // Hide buttons when cart is empty
             } else {
+                drawerFooter.style.display = 'block'; // Show buttons when items exist
                 cart.forEach((item, index) => {
                     cartList.innerHTML += `
                         <div class="cart-item">
@@ -711,9 +730,16 @@
                         </div>`;
                 });
             }
-            drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+            drawer.classList.add('active'); 
+            overlay.classList.add('active'); 
+            document.body.style.overflow = 'hidden';
         }
-        function closeDrawer() { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        
+        function closeDrawer() { 
+            drawer.classList.remove('active'); 
+            overlay.classList.remove('active'); 
+            document.body.style.overflow = ''; 
+        }
 
         document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
         document.getElementById('close-drawer-btn').addEventListener('click', closeDrawer);
