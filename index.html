@@ -9,7 +9,7 @@
     <style>
         /* --- CSS VARIABLES (VLR Brand Colors) --- */
         :root {
-            --primary: #0B0093; /* Deep Blue / Purple */
+            --primary: #0B0093; /* Deep Blue/Purple */
             --primary-dark: #0A0093; 
             --accent: #17AEFF; /* Light Blue */
             --accent-light: rgba(23, 174, 255, 0.1);
@@ -39,9 +39,8 @@
             display: flex; flex-direction: column; align-items: center; gap: 10px;
             position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(11, 0, 147, 0.08);
         }
-        .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; cursor: pointer; color: var(--primary); display: flex; align-items: center; gap: 4px;}
-        .logo span { display: inline-block; width: 6px; height: 6px; background: var(--danger); border-radius: 50%; } 
-        .logo span.blue-dot { background: var(--accent); }
+        .logo { display: flex; align-items: center; cursor: pointer; }
+        .logo img { height: 40px; width: auto; }
         
         .nav-tabs { display: flex; gap: 20px; width: 100%; justify-content: center;}
         .tab-btn { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: var(--transition); padding: 4px 0; position: relative; }
@@ -51,7 +50,6 @@
 
         @media (min-width: 768px) {
             header { flex-direction: row; justify-content: space-between; padding: 10px 40px; }
-            .logo { font-size: 24px; }
             .nav-tabs { width: auto; gap: 30px; }
             .tab-btn { font-size: 15px; }
         }
@@ -277,8 +275,9 @@
 <body>
 
     <header>
-        <!-- Place VLR LOGO PNG.jpg here -->
-        <div class="logo" onclick="switchTab('home')"><span class="red-dot"></span>VLR<span class="blue-dot"></span></div>
+        <div class="logo" onclick="switchTab('home')">
+            <img src="VLR LOGO PNG.jpg" alt="VLR Global Concept Logo">
+        </div>
         <nav class="nav-tabs">
             <button class="tab-btn active" onclick="switchTab('home')">Home</button>
             <button class="tab-btn" onclick="switchTab('shop')">Catalog</button>
@@ -291,7 +290,7 @@
         <section class="hero">
             <h1 class="reveal">Customized Wears &<br>Corporate Branding.</h1>
             <p class="reveal">VLR Global Concept delivers world-class custom garments, sports wear, masks, and corporate gift items across Nigeria.</p>
-            <button class="btn btn-white reveal" style="max-width: 240px; margin: 0 auto; color: var(--primary);" onclick="switchTab('shop'); loadProduct('custom_shirts');">View Catalog</button>
+            <button class="btn btn-white reveal" style="max-width: 240px; margin: 0 auto; color: var(--primary);" onclick="switchTab('shop'); loadProduct('round_shirts');">View Catalog</button>
             
             <div class="trust-badges reveal">
                 <div class="badge"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> MOQ: 25-50pcs</div>
@@ -317,41 +316,60 @@
             <p>Select a category to begin building your custom order.</p>
         </div>
         
-        <!-- UPDATED HOMEPAGE GRID FROM CATALOG -->
+        <!-- 8-ITEM CATALOG GRID -->
         <section class="category-grid">
-            <div class="category-card reveal" onclick="loadProduct('custom_shirts')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800" alt="Customised Shirts" class="category-img"></div>
-                <h3>Customised Round & Collar shirts</h3>
-                <p>₦5,500 - ₦18,000</p>
-                <span class="category-link">Order Now &rarr;</span>
-            </div>
-            <div class="category-card reveal" onclick="loadProduct('casual_wears')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800" alt="Casual Wears" class="category-img"></div>
-                <h3>Casual Wears</h3>
-                <p>₦5,000 - ₦9,000</p>
-                <span class="category-link">Order Now &rarr;</span>
-            </div>
-            <div class="category-card reveal" onclick="loadProduct('mask')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1586942425654-e009d17d12f1?auto=format&fit=crop&q=80&w=800" alt="Masks" class="category-img"></div>
-                <h3>Mask</h3>
+            <div class="category-card reveal" onclick="loadProduct('round_shirts')">
+                <div class="img-wrapper"><img src="round_shirts.jpg" alt="Branded Round T-Shirts" class="category-img"></div>
+                <h3>Branded Round T-Shirts</h3>
                 <p>Custom Quote</p>
                 <span class="category-link">Order Now &rarr;</span>
             </div>
-            <div class="category-card reveal" onclick="loadProduct('sports_wears')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&q=80&w=800" alt="Sports Wears" class="category-img"></div>
-                <h3>Branded Sports Wears & Shirts</h3>
+
+            <div class="category-card reveal" onclick="loadProduct('collar_shirts')">
+                <div class="img-wrapper"><img src="collar_shirts.jpg" alt="Branded Collar T-Shirts" class="category-img"></div>
+                <h3>Branded Collar T-Shirts</h3>
                 <p>Custom Quote</p>
                 <span class="category-link">Order Now &rarr;</span>
             </div>
+
+            <div class="category-card reveal" onclick="loadProduct('hoodies')">
+                <div class="img-wrapper"><img src="hoodies.jpg" alt="Hoodies" class="category-img"></div>
+                <h3>Hoodies</h3>
+                <p>Custom Quote</p>
+                <span class="category-link">Order Now &rarr;</span>
+            </div>
+
+            <div class="category-card reveal" onclick="loadProduct('joggers')">
+                <div class="img-wrapper"><img src="joggers.jpg" alt="Joggers" class="category-img"></div>
+                <h3>Joggers</h3>
+                <p>Custom Quote</p>
+                <span class="category-link">Order Now &rarr;</span>
+            </div>
+
+            <div class="category-card reveal" onclick="loadProduct('caps')">
+                <div class="img-wrapper"><img src="caps.jpg" alt="Caps" class="category-img"></div>
+                <h3>Caps</h3>
+                <p>Custom Quote</p>
+                <span class="category-link">Order Now &rarr;</span>
+            </div>
+
+            <div class="category-card reveal" onclick="loadProduct('masks')">
+                <div class="img-wrapper"><img src="masks.jpg" alt="Masks" class="category-img"></div>
+                <h3>Masks</h3>
+                <p>Custom Quote</p>
+                <span class="category-link">Order Now &rarr;</span>
+            </div>
+
             <div class="category-card reveal" onclick="loadProduct('throw_pillows')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=800" alt="Throw Pillows" class="category-img"></div>
+                <div class="img-wrapper"><img src="throw_pillows.jpg" alt="Throw Pillows" class="category-img"></div>
                 <h3>Throw Pillows</h3>
                 <p>Custom Quote</p>
                 <span class="category-link">Order Now &rarr;</span>
             </div>
-            <div class="category-card reveal" onclick="loadProduct('corporate_gifts')">
-                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800" alt="Corporate Gifts" class="category-img"></div>
-                <h3>Corporate Gift Items</h3>
+
+            <div class="category-card reveal" onclick="loadProduct('gift_items')">
+                <div class="img-wrapper"><img src="gift_items.jpg" alt="Gift Items" class="category-img"></div>
+                <h3>Gift Items</h3>
                 <p>Custom Quote</p>
                 <span class="category-link">Order Now &rarr;</span>
             </div>
@@ -371,7 +389,7 @@
             <div class="feature-item reveal">
                 <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
                 <h3>Timeliness & Speed</h3>
-                <p>Our standard turnaround time is just 1 week from payment, ensuring your corporate events launch on schedule.</p>
+                <p>Our standard turnaround time is 1 week from payment depending on order size, ensuring your corporate events launch on schedule.</p>
             </div>
             <div class="feature-item reveal">
                 <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
@@ -399,7 +417,7 @@
             <div class="step-card reveal">
                 <div class="step-number">03</div>
                 <h3>Attach Artwork & Pay</h3>
-                <p>Send your HD logos directly in the chat. We confirm your invoice, receive payment, and deliver within 1 week.</p>
+                <p>Send your HD logos directly in the chat. We confirm your invoice, receive payment, and deliver within 1 week depending on order size.</p>
             </div>
         </section>
 
@@ -411,15 +429,15 @@
         <section class="faq-container reveal">
             <details>
                 <summary>What is your Minimum Order Quantity (MOQ)?</summary>
-                <div class="faq-content">Our Minimum Order Quantity (MOQ) ranges from <strong>25 to 50 pieces</strong> depending on the specific item and customization requirements for your brand.</div>
+                <div class="faq-content">Our Minimum Order Quantity (MOQ) is <strong>25-50pcs</strong> depending on the specific item and customization requirements for your brand.</div>
             </details>
             <details>
                 <summary>What is the estimated turnaround time?</summary>
-                <div class="faq-content">Our standard turnaround time is <strong>1 week from payment confirmation</strong>, depending on the exact size and complexity of your bulk order.</div>
+                <div class="faq-content">Our standard turnaround time is <strong>1 week from payment</strong> depending on order size and complexity.</div>
             </details>
             <details>
                 <summary>What is your Return and Refund Policy?</summary>
-                <div class="faq-content">Due to the custom nature of our garments, we have a strict <strong>No Refunds</strong> policy. However, we stand by our quality. If any errors occur from our production process, the affected pieces will be returned and completely replaced.</div>
+                <div class="faq-content">Due to the custom nature of our garments, we have a strict <strong>No refunds</strong> policy. However, we stand by our quality. If any errors are from production, pieces will be returned and replaced.</div>
             </details>
             <details>
                 <summary>How do I send my design or logo files?</summary>
@@ -460,9 +478,11 @@
 
         <!-- Footer -->
         <footer>
-            <div class="logo" style="justify-content: center; color: white;">VLR.</div>
+            <div class="logo" style="justify-content: center; color: white;">
+                <img src="VLR LOGO PNG.jpg" alt="VLR Logo" style="height: 30px;">
+            </div>
             <p style="color: #e0e7ff; font-size: 14px; margin-top: 10px;">&copy; 2026 VLR Global Concept (CRBN 203785). All rights reserved.</p>
-            
+           
         </footer>
     </div>
 
@@ -470,27 +490,27 @@
     <div id="shop" class="tab-content">
         <main class="product-container">
             <section class="product-gallery">
-                <img id="main-product-img" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=1000" alt="Product Mockup">
+                <img id="main-product-img" src="INSERT_IMAGE_HERE.jpg" alt="Product Mockup">
             </section>
 
             <section class="product-details">
                 <label class="input-label">Change Product</label>
                 <div class="select-wrapper">
-                    <!-- FULL CATALOG DROPDOWN -->
                     <select id="master-product-select" onchange="loadProduct(this.value)">
-                        <option value="custom_shirts">Customised Round & Collar shirts</option>
-                        <option value="casual_wears">Casual Wears</option>
-                        <option value="mask">Mask</option>
-                        <option value="sports_wears">Branded Sports Wears & Shirts</option>
+                        <option value="round_shirts">Branded Round T-Shirts</option>
+                        <option value="collar_shirts">Branded Collar T-Shirts</option>
+                        <option value="hoodies">Hoodies</option>
+                        <option value="joggers">Joggers</option>
+                        <option value="caps">Caps</option>
+                        <option value="masks">Masks</option>
                         <option value="throw_pillows">Throw Pillows</option>
-                        <option value="branded_caps">Branded shirts, caps etc</option>
-                        <option value="corporate_gifts">Corporate Gift Items</option>
+                        <option value="gift_items">Gift Items</option>
                     </select>
                 </div>
 
-                <h1 id="product-title">Customised Round & Collar shirts</h1>
-                <span class="price" id="product-price">₦5,500 - ₦18,000</span>
-                <p id="product-desc" style="color: var(--text-muted); margin-bottom: 20px; font-size: 16px;">Premium customised round neck and collar shirts for individuals and corporate branding.</p>
+                <h1 id="product-title">Branded Round T-Shirts</h1>
+                <span class="price" id="product-price">Custom Quote</span>
+                <p id="product-desc" style="color: var(--text-muted); margin-bottom: 20px; font-size: 16px;">Premium customised round neck shirts for individuals and corporate branding.</p>
                 <div class="divider"></div>
 
                 <label class="input-label">Color Profile</label>
@@ -507,7 +527,7 @@
                     <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Please provide a specific size breakdown (S, M, L, XL, XXL) to our team during the WhatsApp confirmation phase.</p>
                 </div>
 
-                <label class="input-label">Total Quantity (MOQ Applies)</label>
+                <label class="input-label">Total Quantity (MOQ 25-50pcs Applies)</label>
                 <input type="number" id="quantity" value="25" min="25">
                 
                 <div style="background: var(--background); padding: 15px; border-radius: 8px; border: 1px dashed var(--border); margin-bottom: 25px;">
@@ -541,65 +561,73 @@
     <script>
         // --- FULL PRODUCT DATABASE FROM CATALOG ---
         const productCatalog = {
-            'custom_shirts': { 
-                name: "Customised Round & Collar shirts", 
-                price: "₦5,500 - ₦18,000",
-                desc: "Premium customised round neck and collar shirts for individuals and corporate branding.", 
-                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=1000", 
+            'round_shirts': { 
+                name: "Branded Round T-Shirts", 
+                price: "Custom Quote",
+                desc: "Premium customised round neck shirts for individuals and corporate branding.", 
+                image: "round_shirts.jpg", 
                 colors: ["VLR Deep Blue", "Classic White", "Custom Brand Color"],
                 hasSizes: true
             },
-            'casual_wears': { 
-                name: "Casual Wears", 
-                price: "₦5,000 - ₦9,000",
-                desc: "Comfortable and stylish casual wears for everyday use.", 
-                image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=1000", 
-                colors: ["Black", "White", "Grey", "Custom"],
+            'collar_shirts': { 
+                name: "Branded Collar T-Shirts", 
+                price: "Custom Quote",
+                desc: "Professional polo shirts with custom embroidery or high-quality prints.", 
+                image: "collar_shirts.jpg", 
+                colors: ["VLR Deep Blue", "Classic White", "Custom Brand Color"],
                 hasSizes: true
             },
-            'mask': { 
-                name: "Branded Face Masks", 
+            'hoodies': { 
+                name: "Hoodies", 
                 price: "Custom Quote",
-                desc: "Custom branded face masks for safety and brand visibility.", 
-                image: "https://images.unsplash.com/photo-1586942425654-e009d17d12f1?auto=format&fit=crop&q=80&w=1000", 
+                desc: "Heavyweight, comfortable hoodies perfect for streetwear drops or team merchandise.", 
+                image: "hoodies.jpg", 
+                colors: ["Black", "White", "Custom"],
+                hasSizes: true
+            },
+            'joggers': { 
+                name: "Joggers", 
+                price: "Custom Quote",
+                desc: "Premium quality joggers built for comfort, style, and durability.", 
+                image: "joggers.jpg", 
+                colors: ["Black", "Grey", "Custom"],
+                hasSizes: true
+            },
+            'caps': { 
+                name: "Caps", 
+                price: "Custom Quote",
+                desc: "Branded headwear for promotional events, road shows, and everyday fashion.", 
+                image: "caps.jpg", 
                 colors: ["Black", "White", "Custom"],
                 hasSizes: false
             },
-            'sports_wears': { 
-                name: "Branded Sports Wears & Shirts", 
+            'masks': { 
+                name: "Masks", 
                 price: "Custom Quote",
-                desc: "High-quality, breathable moisture-wicking materials designed for schools and active organizations.", 
-                image: "https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&q=80&w=1000", 
-                colors: ["Team Blue", "Team Red", "Custom School Colors"],
-                hasSizes: true
+                desc: "Custom branded face masks designed for safety and enhanced brand visibility.", 
+                image: "masks.jpg", 
+                colors: ["Black", "White", "Custom"],
+                hasSizes: false
             },
             'throw_pillows': { 
                 name: "Throw Pillows", 
                 price: "Custom Quote",
-                desc: "Personalized throw pillows for home decor or corporate gifting.", 
-                image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=1000", 
+                desc: "Personalized and fully customized throw pillows for home decor or luxury corporate gifting.", 
+                image: "throw_pillows.jpg", 
                 colors: ["White", "Custom Print"],
                 hasSizes: false
             },
-            'branded_caps': { 
-                name: "Branded shirts, caps etc", 
+            'gift_items': { 
+                name: "Gift Items", 
                 price: "Custom Quote",
-                desc: "A mix of branded shirts and caps for promotional events.", 
-                image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=1000", 
-                colors: ["Black", "White", "Custom"],
-                hasSizes: false
-            },
-            'corporate_gifts': { 
-                name: "Corporate Gift Items", 
-                price: "Custom Quote",
-                desc: "Premium corporate gift items including mugs, pens, notebooks, and tote bags.", 
-                image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=1000", 
+                desc: "A wide selection of premium corporate gift items tailored to your specific branding needs.", 
+                image: "gift_items.jpg", 
                 colors: ["Custom"],
                 hasSizes: false
             }
         };
 
-        let currentLoadedProduct = 'custom_shirts';
+        let currentLoadedProduct = 'round_shirts';
 
         function loadProduct(productId) {
             const product = productCatalog[productId];
